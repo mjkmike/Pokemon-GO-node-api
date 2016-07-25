@@ -17,7 +17,7 @@ var events = require('events');
 var ProtoBuf = require('protobufjs');
 var GoogleOAuth = require('gpsoauthnode');
 var fs = require('fs');
-var s2 = require('s2geometry-node');
+var s2 = require('s2');
 
 var Logins = require('./logins');
 
@@ -127,12 +127,12 @@ function Pokeio() {
       {
         return callback(new Error('Error'));
       }
-      
+
       if (response === undefined || body === undefined) {
         console.error('[!] RPC Server offline');
         return callback(new Error('RPC Server offline'));
       }
-      
+
       var f_ret;
       try {
         f_ret = ResponseEnvelop.decode(body);
